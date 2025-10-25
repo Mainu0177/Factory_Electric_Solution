@@ -1,25 +1,17 @@
 <template>
     <div class="container">
         <div class="row justify-content-center">
-            <div class="col-md-7 animated fadeIn col-lg-6 center-screen">
-                <div class="card w-90  p-4">
+            <div class="col-md-7 col-lg-6 center-screen">
+                <div class="card animated fadeIn w-90  p-4">
                     <form @submit.prevent="submit">
                         <div class="card-body">
-                            <h4>SIGN IN</h4>
+                            <h4>EMAIL ADDRESS</h4>
                             <br/>
+                            <label>Your email address</label>
                             <input v-model="form.email" id="email" placeholder="User Email" class="form-control" type="email"/>
                             <br/>
-                            <input v-model="form.password" id="password" placeholder="User Password" class="form-control" type="password"/>
-                            <br/>
-                            <button type="submit" class="btn w-100 btn-secondary">Login</button>
-                            <hr/>
-                            <div class="float-end mt-3">
-                            <span>
-                                <Link class="text-center ms-3 h6" href="/registration">Sign Up </Link>
-                                <span class="ms-1">|</span>
-                                <Link class="text-center ms-3 h6" href="/send-otp">Forget Password</Link>
-                            </span>
-                            </div>
+
+                            <button type="submit" class="btn mt-3 w-100  btn-success">Next</button>
                         </div>
                     </form>
                 </div>
@@ -38,20 +30,19 @@ const toaster = createToaster({
 
 const form = useForm({
     email: '',
-    password: '',
 })
 
 const page = usePage();
 
-function submit(){
-    if (form.email === 0 || form.password === 0) {
-        toaster.error("All fields are required");
+function submit() {
+    if (form.email.length === 0) {
+        toaster.warning('Your valid email must be provided');
     } else {
-        form.post('/user-login', {
+        form.post('/send-otp', {
             onSuccess: () => {
                 if (page.props.flash.status === true) {
                     toaster.success(page.props.flash.message);
-                    router.get('/dashboardPage');
+                    router.get('/verify-otp')
                 } else {
                     toaster.error(page.props.flash.message);
                 }
@@ -59,8 +50,6 @@ function submit(){
         })
     }
 }
-
-
 </script>
 
 <style scoped>
