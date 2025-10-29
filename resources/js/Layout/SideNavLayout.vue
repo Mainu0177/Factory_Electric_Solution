@@ -1,0 +1,76 @@
+<template>
+    <div>
+        <nav id="topNav" class="navbar fixed-top bg-secondary top-navbar">
+            <div class="container-fluid">
+                <a id="MenuBar" @click="NavOpenClose" class="icon-nav mx-0 my-1 h5">
+                    <i class="fa text-white fa-bars"></i>
+                </a>
+            </div>
+        </nav>
+        <div id="sideNav" class="side-nav-open">
+            <div class="side-nav-top text-center">
+                <img alt="" class="side-nav-logo rounded" src="../Assets/img/factoryLogo.jpg" />
+            </div>
+
+            <Link href="/dashboardPage" class="side-bar-item">
+                <span class="side-bar-item-icon"><i class="fa fa-tachometer-alt text"></i></span>
+                <span class="side-bar-item-caption">Dashboard</span>
+            </Link>
+
+            <!-- <Link href="/categoryPage" class="side-bar-item">
+                <span class="side-bar-item-icon"><i class="fa fa-th-list text-green"></i></span>
+                <span class="side-bar-item-caption">Category</span>
+            </Link> -->
+
+            <Link href="/CustomerPage" class="side-bar-item">
+                <span class="side-bar-item-icon"><i class="fa fa-users text"></i></span>
+                <span class="side-bar-item-caption">Clients</span>
+            </Link>
+
+            <Link href="/ProductPage" class="side-bar-item">
+                <span class="side-bar-item-icon"><i class="fa fa-box text"></i></span>
+                <span class="side-bar-item-caption">Products</span>
+            </Link>
+
+            <Link href="/create-sale" class="side-bar-item">
+                <span class="side-bar-item-icon"><i class="fa fa-file text"></i></span>
+                <span class="side-bar-item-caption">Quotes</span>
+            </Link>
+
+            <Link href="/InvoiceListPage" class="side-bar-item">
+                <span class="side-bar-item-icon"><i class="fa fa-file-invoice-dollar text"></i></span>
+                <span class="side-bar-item-caption">Invoices</span>
+            </Link>
+
+            <!-- <Link href="/userProfilePage" class="side-bar-item">
+                <span class="side-bar-item-icon"><i class="fa fa-user-circle text-green"></i></span>
+                <span class="side-bar-item-caption">Profile</span>
+            </Link> -->
+
+            <Link href="/user-logout" class="side-bar-item">
+                <span class="side-bar-item-icon"><i class="fa fa-sign-out-alt text"></i></span>
+                <span class="side-bar-item-caption">Logout</span>
+            </Link>
+
+        </div>
+        <div id="content" class="content">
+            <div class="container-fluid">
+                <main>
+                    <!-- start content -->
+                    <slot>
+
+                    </slot>
+                    <!-- end content -->
+                </main>
+            </div>
+        </div>
+    </div>
+</template>
+
+<script setup>
+import { Link } from '@inertiajs/vue3';
+</script>
+
+<style scoped>
+
+</style>

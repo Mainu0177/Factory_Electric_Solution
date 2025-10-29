@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Mail;
 use App\Models\User;
 use Inertia\Inertia;
 use App\Mail\MailOtp;
 use App\Helper\JWTToken;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class UserController extends Controller
 {
@@ -99,20 +99,23 @@ class UserController extends Controller
         $email = $request->input('email');
         $otp = rand(1000, 9999);
         $count = User::where('email', $email)->count();
+
         if($count == 1){
             Mail::to($email)->send(new MailOtp($otp));
             User::where('email', $email)->update(['otp' => $otp]);
 
             $request->session()->put('email', $email);
+
             $data = [
-                'message' => "4 Digit {$otp} OTP sent to your email",
                 'status' => true,
+                'message' => "4 Digit {$otp} OTP send to your email",
                 'error' => '',
             ];
+            return redirect('/registration')->with($data);
         }else{
             $data = [
-                'message' => 'Email not found',
                 'status' => false,
+                'message' => 'Email not found',
                 'error' => '',
             ];
             return redirect('/send-otp')->with($data);

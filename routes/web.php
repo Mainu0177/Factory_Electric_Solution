@@ -29,3 +29,6 @@ Route::get('/dashboardPage', [UserController::class, 'DashboardPage'])->middlewa
 // Front end All routes
 Route::get('/login', [UserController::class, 'LoginPage'])->name('LoginPage');
 Route::get('/registration', [UserController::class, 'RegistrationPage'])->name('RegistrationPage');
+Route::get('/send-otp', [UserController::class, 'SendOtpPage'])->name('SendOtpPage');
+Route::get('/verify-otp', [UserController::class, 'VerifyOtpPage'])->name('VerifyOtpPage');
+Route::get('/reset-password', [UserController::class, 'ResetPasswordPage'])->name('ResetPasswordPage')->middleware([SessionAuthenticate::class]);

@@ -38,7 +38,7 @@ class MailOtp extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'email.OtpPage',
+            // view: 'email.OtpPage',
         );
     }
 

@@ -22,7 +22,7 @@
 
                                     <div class="col-md-4 p-2">
                                         <label>Mobile Number</label>
-                                        <input id="mobile" v-model="form.number" placeholder="Mobile" class="form-control" type="mobile" />
+                                        <input id="mobile" v-model="form.phone" placeholder="Mobile" class="form-control" type="mobile" />
                                     </div>
                                     <div class="col-md-4 p-2">
                                         <label>Password</label>
@@ -58,9 +58,8 @@ const toaster = createToaster({
 const form = useForm({
     name: '',
     email: '',
-    number: '',
+    phone: '',
     password: '',
-    cpassword: '',
 })
 
 const page = usePage();
@@ -70,7 +69,7 @@ function submit() {
         toaster.warning("Name is required");
     } else if (form.email.length === 0) {
         toaster.warning("Email is required");
-    } else if (form.number.length === 0) {
+    } else if (form.phone.length === 0) {
         toaster.warning("Phone is required");
     } else if (form.password.length === 0) {
         toaster.warning("Password is required");
@@ -80,8 +79,8 @@ function submit() {
         form.post('/user-registration', {
             onSuccess: () => {
                 if (page.props.flash.status === true) {
-                    router.get('/login');
                     toaster.success(page.props.flash.message);
+                    return router.get('/login');
                 } else {
                     toaster.error(page.props.flash.message);
                 }

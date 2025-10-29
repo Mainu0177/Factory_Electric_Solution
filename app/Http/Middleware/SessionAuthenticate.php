@@ -23,7 +23,7 @@ class SessionAuthenticate
         }else{
             $request->headers->set('email', $email);
             $request->headers->set('id', $user_id);
-            return $next($request);
         }
+        return $next($request);
     }
 }
