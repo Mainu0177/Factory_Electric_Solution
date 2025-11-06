@@ -1,12 +1,13 @@
 <template>
     <SideNavLayout>
-        <SummaryView />
+        <ProductList/>
     </SideNavLayout>
 </template>
 
 <script setup>
-import SummaryView from '../Components/Dashboard/SummaryView.vue';
+import ProductList from '../Components/Product/ProductList.vue';
 import SideNavLayout from '../Layout/SideNavLayout.vue';
+
 
 
 </script>
